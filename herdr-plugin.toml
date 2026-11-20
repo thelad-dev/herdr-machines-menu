@@ -1,0 +1,32 @@
+id = "thelad.machines-menu"
+name = "Maschinenmenü"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Menü zum Hinzufügen, Aktivieren, Deaktivieren, Neuverbinden, Umbenennen und Entfernen gespeicherter SSH-Maschinen"
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "open"
+title = "Maschinen verwalten"
+command = ["sh", "-c", "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin thelad.machines-menu --entrypoint menu"]
+
+[[actions]]
+id = "add"
+title = "Maschine hinzufügen"
+command = ["sh", "-c", "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin thelad.machines-menu --entrypoint add"]
+
+[[panes]]
+id = "menu"
+title = "Maschinen"
+placement = "popup"
+width = "90%"
+height = "85%"
+command = ["python3", "machines_menu.py"]
+
+[[panes]]
+id = "add"
+title = "Maschine hinzufügen"
+placement = "popup"
+width = "90%"
+height = "85%"
+command = ["python3", "machines_menu.py", "--add"]
